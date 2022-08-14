@@ -1,0 +1,38 @@
+# This is a basic workflow of ECR
+name: Push image to the ECR
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build:
+    name: Build Image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+        env: 
+          AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
+          AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+          AWS_REGION: us-east-1
+          
+      - name: Build, Test, Tag and push image to ECR
+        env: 
+          ECR_REGISTRY: ${{steps.login-ecr.outputs.registry}}
+          ECR_REPOSITORY: clo835
+          IMAGE_TAG: v1
+        run: |
+          cd webapp/
+          ls -ltra
+          # Build a docker image 
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          # Run the container to test
+          docker run -d -p 80:8080 --name webapp-image $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          # list all the containers
+          docker ps
+          echo " sleep 10 seconds for container to run"
+          sleep 10
+          # Push the docker image to ECR repository
+          echo "Pushing image to ECR..."
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
