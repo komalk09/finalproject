@@ -16,5 +16,4 @@ managedNodeGroups:
   ssh:
     enableSsm: true
 
-
-#eksconfig file for Group 9
+# eks config for group 9
