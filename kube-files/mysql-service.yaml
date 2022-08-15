@@ -1,14 +1,14 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: mysql-svc
+  name: mysql
   labels: 
     app.kubernetes.io/name: mysql
-    app.kubernetes.io/component: backend
+    app.kubernetes.io/app: mysql
 spec:
   selector:
     app.kubernetes.io/name: mysql
-    app.kubernetes.io/component: backend
+    app.kubernetes.io/app: mysql
   ports:
   - port: 3306
     targetPort: 3306

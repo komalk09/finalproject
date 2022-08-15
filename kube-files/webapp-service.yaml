@@ -7,7 +7,6 @@ metadata:
     name: simple-webapp-mysql
 spec:
   selector:
-    app: example-app
     name: simple-webapp-mysql
   type: LoadBalancer
   ports:
