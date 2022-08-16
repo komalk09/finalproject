@@ -8,9 +8,9 @@ metadata:
 spec:
   containers:
   - name: simple-webapp-mysql
-    image: 676489327070.dkr.ecr.us-east-1.amazonaws.com/clo835:latest
+    image: 676489327070.dkr.ecr.us-east-1.amazonaws.com/clo835@sha256:2bf4e1238b390602ed81a179ecd7851b7a1bc21e06851b1257ffc5ed13d0ebce
     ports:
-    - containerPort: 8080
+    - containerPort: 81
     volumeMounts:
     - name: app-secret-volumes
       mountPath: "/opt/app-secret-volumes"
