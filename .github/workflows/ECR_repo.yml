@@ -1,7 +1,7 @@
 name: Deploy app image
 on:
   pull_request:
-    branches: [ prod ]
+    branches: [ dev ]
     paths:
       - 'web/**'
 jobs:
