@@ -3,7 +3,7 @@ on:
   pull_request:
     branches: [ prod ]
     paths:
-      - 'webapp/**'
+      - 'web/**'
 jobs:
   deploy:
     name: Deploy
@@ -31,7 +31,7 @@ jobs:
         ECR_REPOSITORY: clo835
         IMAGE_TAG: v1
         run: |
-        cd webapp/
+        cd web/
         ls -ltra
         # Build a docker image 
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
