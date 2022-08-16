@@ -30,7 +30,7 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: clo835
         IMAGE_TAG: v1
-        run: |
+      run: |
           cd web/
           ls -ltra
           # Build a docker image 
