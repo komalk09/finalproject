@@ -28,7 +28,7 @@ jobs:
       id: build-app
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: ${{ secrets.REPO_NAME }}
+        ECR_REPOSITORY: clo835
         IMAGE_TAG: v1
         run: |
         cd webapp/
