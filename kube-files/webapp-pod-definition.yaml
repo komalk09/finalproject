@@ -8,7 +8,7 @@ metadata:
 spec:
   containers:
   - name: simple-webapp-mysql
-    image: kodekloud/simple-webapp-mysql
+    image: 676489327070.dkr.ecr.us-east-1.amazonaws.com/clo835:latest
     ports:
     - containerPort: 8080
     volumeMounts:
