@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-webapp-mysql
+  labels:
+    app: example-app
+    name: simple-webapp-mysql
+spec:
+  selector:
+    matchLabels:
+      app: example-app
+      name: simple-webapp-mysql
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: example-app
+        name: simple-webapp-mysql
+    spec:
+      containers:
+      - name: simple-webapp-mysql
+        image: 676489327070.dkr.ecr.us-east-1.amazonaws.com/clo835:updated
+        ports:
+        - containerPort: 81
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 500m
+        volumeMounts:
+        - name: app-secret-volumes
+          mountPath: "/opt/app-secret-volumes"
+          readOnly: true
+        envFrom:
+          - secretRef:
+              name: sql-secret
+      volumes:
+        - name: app-secret-volumes
+          secret:
+            secretName: sql-secret
